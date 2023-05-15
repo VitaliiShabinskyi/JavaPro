@@ -1,5 +1,7 @@
+package vehicles;
+
 // Абстрактный класс для автомобилей
-abstract class Car {
+public abstract class Car {
     private String brand;
     private String model;
     private int year;

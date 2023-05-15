@@ -1,4 +1,8 @@
-class Sedan extends Car {
+package vehicles;
+
+import vehicles.Car;
+
+public class Sedan extends Car {
     public Sedan(String brand, String model, int year, double price) {
         super(brand, model, year, price);
     }
