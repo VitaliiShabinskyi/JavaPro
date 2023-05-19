@@ -21,6 +21,38 @@ import java.util.Arrays;
  *+ 1. Найти второй по величине элемент в заданном одномерном массиве.
  *+ 2. Перевернуть заданный одномерный массив (элементы располагаются в обратном порядке).
  *+ 3. Найти наименьшую сумму двух соседних элементов в заданном одномерном массиве.
+ */
+
+ /**
+ * Уровень сложности 1 из 10:
+ *
+ *+ Найти сумму всех элементов в массиве.
+ *+ Найти наибольшее значение в массиве.
+ *+ Посчитать количество четных чисел в массиве.
+ *
+ * Уровень сложности 2 из 10:
+ *
+ *+ Проверить, содержит ли массив заданное значение.
+ *+ Отсортировать массив по возрастанию.
+ *+ Найти индекс первого вхождения заданного значения в массиве.
+ *
+ * Уровень сложности 3 из 10:
+ *
+ *+ Найти среднее значение всех элементов в массиве.
+ *+ Поменять порядок элементов массива на обратный.
+ *+ Проверить, является ли массив палиндромом (элементы читаются одинаково с начала и с конца).
+ *
+ * Уровень сложности 4 из 10:
+ *
+ *+ Найти наибольшую сумму подряд идущих элементов в массиве.
+ *+ Удалить все дубликаты из массива.
+ *+ Найти два наименьших значения в массиве.
+ *
+ * Уровень сложности 5 из 10:
+ *
+ * Найти наибольшую возрастающую последовательность в массиве (элементы идут по порядку).
+ * Найти наибольшую сумму подмассива с нечетным количеством элементов.
+ *
  *
  * Помните, что эти задачи представляют лишь примеры, и вы можете варьировать условия и требования в соответствии
  * с вашими предпочтениями и требованиями задачи.
@@ -32,21 +64,48 @@ public class Main {
         int[] array3 = {1, 2, 3, 4, 3, 2, 1};
         int[] array4 = {10, 9, -8, 7, 6, 5, -4, 3, 2, 1};
         int[] array5 = {9, -8, 7, 6, 5, -4, 3, 2, 1};
+        int[] array6 = {1, 3, 4, 4, 8, 9, 10, 10, 6, 7};
 
-
+        // Найти сумму всех элементов в массиве.
         System.out.println(sum(array));
 
+        // Найти наибольшее значение в массиве.
         System.out.println(max(array));
 
+        // Посчитать количество четных чисел в массиве.
         System.out.println(evenCount(array));
 
-        System.out.println(isSymmetry(array)); // он же палиндром
+        // Проверить, содержит ли массив заданное значение.
+        System.out.println(isContain(array, 5));
+
+        // Отсортировать массив по возрастанию.
+        sort(array3);
+
+        // Найти индекс первого вхождения заданного значения в массиве.
+        System.out.println(findIndex(array2, 2));
+
+        // Найти среднее значение всех элементов в массиве.
+        System.out.println(average(array));
+
+        // Поменять порядок элементов массива на обратный.
+        reverse(array5);
+
+        // Проверить, является ли массив палиндромом
+        System.out.println(isSymmetry(array));
+
+        // Найти наибольшую сумму подряд идущих элементов в массиве.
+        System.out.println(maxSumSuccessively(array6));
+
+        // Удалить все дубликаты из массива.
+        System.out.println(Arrays.toString(deleteDuplicate(array6)));
+
+        // Найти два наименьших значения в массиве.
+        findTwoMin(array4);
 
         System.out.println(mult(array2));
 
         System.out.println(isDuplicate(array2));
 
-        sort(array3);
 
         System.out.println(Arrays.toString(removeNegatives(array4)));
 
@@ -58,13 +117,37 @@ public class Main {
 
         System.out.println(nextHigh(array));
 
-        reverse(array5);
 
         System.out.println(minSum(array));
 
     }
 
-    private static int sum(int[] arr) {
+     private static int[] deleteDuplicate(int[] arr) {
+         System.out.println("Удалить все дубликаты из массива.");
+         int index = 0;
+         int[] uniqueArr = new int[arr.length];
+
+         for (int i = 0; i < arr.length; i++) {
+             boolean isDuplicate = false;
+             for (int j = 0; j < index; j++) {
+                if (uniqueArr[j] == arr[i] ) {
+                    isDuplicate = true;
+                    break;
+                }
+             }
+             if (!isDuplicate) {
+                 uniqueArr[index] = arr[i];
+                 index++;
+             }
+         }
+         int[] result = new int[index];
+         for (int i = 0; i < index; i++) {
+             result[i] = uniqueArr[i];
+         }
+         return result;
+     }
+
+     private static int sum(int[] arr) {
         System.out.println("1. Найти сумму элементов в заданном одномерном массиве.");
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -93,6 +176,16 @@ public class Main {
             }
         }
         return even_count;
+    }
+
+    private static boolean isContain(int[] arr, int x) {
+        System.out.println("Проверить, содержит ли массив заданное значение.");
+        for (int num : arr) {
+            if (num == x) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean isSymmetry(int[] arr) {
@@ -146,6 +239,45 @@ public class Main {
             }
         }
         System.out.println(Arrays.toString(arr));
+    }
+
+    private static int findIndex(int[] arr, int x) {
+        System.out.println("Найти индекс первого вхождения заданного значения в массиве.");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == x) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static float average(int[] arr) {
+        System.out.println("Найти среднее значение всех элементов в массиве.");
+        int sum = 0;
+        float average;
+        for (int num : arr) {
+            sum += num;
+        }
+        average = (float) sum / arr.length;
+        return average;
+    }
+
+    private static int maxSumSuccessively(int[] arr) {
+        System.out.println("Найти наибольшую сумму подряд идущих элементов в массиве.");
+
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - 1 == arr[i - 1]) {
+                currentSum += arr[i];
+            } else  {
+                currentSum = arr[i];
+            }
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+        }
+        return maxSum;
     }
 
     private static int[] removeNegatives(int[] arr) {
@@ -223,6 +355,30 @@ public class Main {
             }
         }
         return nextMax;
+    }
+
+    private static void findTwoMin(int[] arr) {
+        System.out.println("Найти два наименьших значения в массиве.");
+        if (arr.length < 2) {
+            System.out.println("Массив должен содержать не менее двух элементов");
+            return;
+        }
+
+        int min = Integer.MAX_VALUE;
+        int nextMin = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min) {
+                nextMin = min;
+                min = arr[i];
+            } else if (arr[i] < nextMin && arr[i] != min) {
+                nextMin = arr[i];
+            }
+        }
+        if (min != Integer.MAX_VALUE && nextMin != Integer.MAX_VALUE) {
+            System.out.println(min + ", " + nextMin);
+        } else {
+            System.out.println("Не найдено двух различных наименьших значений");
+        }
     }
 
     private static void reverse(int[] arr) {
