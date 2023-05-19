@@ -50,7 +50,7 @@ import java.util.Arrays;
  *
  * Уровень сложности 5 из 10:
  *
- * Найти наибольшую возрастающую последовательность в массиве (элементы идут по порядку).
+ *+ Найти наибольшую возрастающую последовательность в массиве (элементы идут по порядку).
  * Найти наибольшую сумму подмассива с нечетным количеством элементов.
  *
  *
@@ -102,10 +102,15 @@ public class Main {
         // Найти два наименьших значения в массиве.
         findTwoMin(array4);
 
+        // Найти наибольшую возрастающую последовательность в массиве
+        findLongSequence(array2);
+
+        // Найти наибольшую сумму подмассива с нечетным количеством элементов.
+        System.out.println(findMaxOddSum(array5));
+
         System.out.println(mult(array2));
 
         System.out.println(isDuplicate(array2));
-
 
         System.out.println(Arrays.toString(removeNegatives(array4)));
 
@@ -117,13 +122,64 @@ public class Main {
 
         System.out.println(nextHigh(array));
 
-
         System.out.println(minSum(array));
 
     }
 
+     private static int findMaxOddSum(int[] arr) {
+         System.out.println("Найти наибольшую сумму подмассива с нечетным количеством элементов.\n" + Arrays.toString(arr));
+         int maxSum = Integer.MIN_VALUE;
+         for (int i = 0; i < arr.length; i++) {
+             int sum = arr[i];
+             int count = 1;
+
+             int left = i - 1;
+             int right = i + 1;
+             while (count %2 != 0 && left >=0 && right < arr.length) {
+                 sum += arr[left] + arr[right];
+                 count += 2;
+                 left--;
+                 right++;
+             }
+             if (sum > maxSum) {
+                 maxSum = sum;
+             }
+         }
+         return maxSum;
+     }
+
+     private static void findLongSequence(int[] arr) {
+         System.out.println("Найти наибольшую возрастающую последовательность в массиве\n" + Arrays.toString(arr));
+         int count = 1;
+         int currentCount = 1;
+         int index = 0;
+         int endIndex = 0;
+         int currentIndex = 0;
+         for (int i = 1; i < arr.length; i++) {
+             if (arr[i] == arr[i - 1] + 1) {
+                 currentCount++;
+             } else {
+                 currentCount = 1;
+                 currentIndex = i;
+             }
+             if (currentCount > count) {
+                 count = currentCount;
+                 index = currentIndex;
+                 endIndex = i;
+             }
+         }
+         System.out.print("[");
+         for (int i = index; i <= endIndex; i++) {
+             System.out.print(arr[i]);
+             if (i != endIndex) {
+                 System.out.print(", ");
+             }
+         }
+         System.out.println("]");
+     }
+
      private static int[] deleteDuplicate(int[] arr) {
-         System.out.println("Удалить все дубликаты из массива.");
+         System.out.println("Удалить все дубликаты из массива.\n" + Arrays.toString(arr));
          int index = 0;
          int[] uniqueArr = new int[arr.length];
 
@@ -148,7 +204,7 @@ public class Main {
      }
 
      private static int sum(int[] arr) {
-        System.out.println("1. Найти сумму элементов в заданном одномерном массиве.");
+        System.out.println("1. Найти сумму элементов в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
@@ -157,7 +213,7 @@ public class Main {
     }
 
     private static int max(int[] arr) {
-        System.out.println("2. Найти наибольший элемент в заданном одномерном массиве.");
+        System.out.println("2. Найти наибольший элемент в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] > max) {
@@ -168,7 +224,7 @@ public class Main {
     }
 
     private static int evenCount(int[] arr) {
-        System.out.println("3. Подсчитать количество четных элементов в заданном одномерном массиве.");
+        System.out.println("3. Подсчитать количество четных элементов в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int even_count = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] %2 == 0) {
@@ -179,7 +235,7 @@ public class Main {
     }
 
     private static boolean isContain(int[] arr, int x) {
-        System.out.println("Проверить, содержит ли массив заданное значение.");
+        System.out.println("Проверить, содержит ли массив заданное значение.\n" + Arrays.toString(arr) + "\tx = " + x);
         for (int num : arr) {
             if (num == x) {
                 return true;
@@ -189,7 +245,7 @@ public class Main {
     }
 
     private static boolean isSymmetry(int[] arr) {
-        System.out.println("1. Проверить, является ли заданный одномерный массив симметричным.");
+        System.out.println("1. Проверить, является ли заданный одномерный массив симметричным.\n" + Arrays.toString(arr));
         int middle = arr.length / 2;
         if (arr.length %2 != 0) {
             middle++;
@@ -207,7 +263,7 @@ public class Main {
     }
 
     private static int mult(int[] arr) {
-        System.out.println("2. Найти произведение элементов в заданном одномерном массиве.");
+        System.out.println("2. Найти произведение элементов в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int mult = arr[0];
         for (int i = 1; i < arr.length; i++) {
             mult *= arr[i];
@@ -216,7 +272,7 @@ public class Main {
     }
 
     private static boolean isDuplicate(int[] arr) {
-        System.out.println("3. Проверить, есть ли в заданном одномерном массиве повторяющиеся элементы.");
+        System.out.println("3. Проверить, есть ли в заданном одномерном массиве повторяющиеся элементы.\n" + Arrays.toString(arr));
         for (int i = 0; i < arr.length-1; i++) {
             for (int j = i+1; j < arr.length; j++) {
                 if (arr[i] == arr[j]) {
@@ -228,7 +284,7 @@ public class Main {
     }
 
     private static void sort(int[] arr) {
-        System.out.println("1. Отсортировать заданный одномерный массив по возрастанию.");
+        System.out.println("1. Отсортировать заданный одномерный массив по возрастанию.\n" + Arrays.toString(arr));
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -242,7 +298,7 @@ public class Main {
     }
 
     private static int findIndex(int[] arr, int x) {
-        System.out.println("Найти индекс первого вхождения заданного значения в массиве.");
+        System.out.println("Найти индекс первого вхождения заданного значения в массиве.\n" + Arrays.toString(arr) + "\tx = " + x);
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == x) {
                 return i;
@@ -252,7 +308,7 @@ public class Main {
     }
 
     private static float average(int[] arr) {
-        System.out.println("Найти среднее значение всех элементов в массиве.");
+        System.out.println("Найти среднее значение всех элементов в массиве.\n" + Arrays.toString(arr));
         int sum = 0;
         float average;
         for (int num : arr) {
@@ -263,7 +319,7 @@ public class Main {
     }
 
     private static int maxSumSuccessively(int[] arr) {
-        System.out.println("Найти наибольшую сумму подряд идущих элементов в массиве.");
+        System.out.println("Найти наибольшую сумму подряд идущих элементов в массиве.\n" + Arrays.toString(arr));
 
         int maxSum = arr[0];
         int currentSum = arr[0];
@@ -281,7 +337,7 @@ public class Main {
     }
 
     private static int[] removeNegatives(int[] arr) {
-        System.out.println("3. Удалить все отрицательные элементы из заданного одномерного массива.");
+        System.out.println("3. Удалить все отрицательные элементы из заданного одномерного массива.\n" + Arrays.toString(arr));
         int positiveCount = 0;
         for (int num : arr) {
             if (num >= 0) {
@@ -300,7 +356,7 @@ public class Main {
     }
 
     private static void changeMinMax(int[] arr) {
-        System.out.println("1. Найти наименьший и наибольший элементы в заданном одномерном массиве и поменять их местами.");
+        System.out.println("1. Найти наименьший и наибольший элементы в заданном одномерном массиве и поменять их местами.\n" + Arrays.toString(arr));
         int maxIndex = 0;
         int minIndex = 0;
         for (int i = 1; i < arr.length; i++) {
@@ -319,7 +375,7 @@ public class Main {
     }
 
     private static int countHighNumbers(int[] arr) {
-        System.out.println("2. Подсчитать количество элементов, которые больше среднего значения всех элементов в заданном одномерном массиве.");
+        System.out.println("2. Подсчитать количество элементов, которые больше среднего значения всех элементов в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int count = 0, sum = 0;
         float average;
         for (int num : arr) {
@@ -335,7 +391,7 @@ public class Main {
     }
 
     private static boolean isLowToHigh(int[] arr) {
-        System.out.println("3. Проверить, является ли заданный одномерный массив упорядоченным по возрастанию.");
+        System.out.println("3. Проверить, является ли заданный одномерный массив упорядоченным по возрастанию.\n" + Arrays.toString(arr));
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i+1] < arr[i]) {
                 return false;
@@ -345,7 +401,7 @@ public class Main {
     }
 
     private static int nextHigh(int[] arr) {
-        System.out.println("1. Найти второй по величине элемент в заданном одномерном массиве.");
+        System.out.println("1. Найти второй по величине элемент в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int max = arr[0];
         int nextMax = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -358,7 +414,7 @@ public class Main {
     }
 
     private static void findTwoMin(int[] arr) {
-        System.out.println("Найти два наименьших значения в массиве.");
+        System.out.println("Найти два наименьших значения в массиве.\n" + Arrays.toString(arr));
         if (arr.length < 2) {
             System.out.println("Массив должен содержать не менее двух элементов");
             return;
@@ -382,7 +438,7 @@ public class Main {
     }
 
     private static void reverse(int[] arr) {
-        System.out.println("2. Перевернуть заданный одномерный массив.");
+        System.out.println("2. Перевернуть заданный одномерный массив.\n" + Arrays.toString(arr));
         int middle = arr.length / 2;
         if (arr.length %2 != 0) {
             middle++;
@@ -396,7 +452,7 @@ public class Main {
     }
 
     private static int minSum(int[] arr) {
-        System.out.println("3. Найти наименьшую сумму двух соседних элементов в заданном одномерном массиве.");
+        System.out.println("3. Найти наименьшую сумму двух соседних элементов в заданном одномерном массиве.\n" + Arrays.toString(arr));
         int sum = arr[0] + arr[1];
         for (int i = 1; i < arr.length - 1; i++) {
             int tmp = arr[i] + arr[i + 1];
