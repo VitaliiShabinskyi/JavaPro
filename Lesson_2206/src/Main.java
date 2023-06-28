@@ -35,7 +35,7 @@ public class Main {
         System.out.println("1. Напишите функцию, которая находит и возвращает имена студентов, не сдавших экзамен.\n" + findLoosers(student));
 
         System.out.println("2. Напишите функцию, которая подсчитывает количество продуктов, которых нет в наличии.");
-        productsNotInSctock(student);
+        System.out.println("Products not in stock : " + productsNotInSctock(student));
 
         // 3
         List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Eve", "Frank");
@@ -51,7 +51,7 @@ public class Main {
         findNextPalindrom(words);
 
         // 5
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 7};
         System.out.println("5. Напишите программу, которая находит сумму всех элементов в заданном массиве arr и выводит ее значение.\n" + sum(arr));
 
         // 6
@@ -79,7 +79,6 @@ public class Main {
                 count++;
             }
         }
-        System.out.println("Products not in stock : " + count);
         return count;
     }
 
@@ -94,22 +93,27 @@ public class Main {
 
     // 4
     private static void findNextPalindrom(List<String> list) {
+
         for (int i = 0; i < list.size() - 1; i++) {
             if (list.get(i).length() != list.get(i+1).length()) {
                 continue;
             }
             String word1 = list.get(i);
             String word2 = list.get(i+1);
-            boolean isPalindrom = true;
-            for (int j = 0; j < list.get(i).length() / 2 ; j++) {
-                if (word1.charAt(j) != word2.charAt(word2.length() - j - 1)) {
-                    isPalindrom = false;
-                    break;
-                }
-            }
-            if (isPalindrom) {
+            String reversed = new StringBuilder(word1).reverse().toString();
+            if (reversed.equals(word2)) {
                 System.out.println(word1 + " -> " + word2);
             }
+//            boolean isPalindrom = true;
+//            for (int j = 0; j < list.get(i).length() / 2 ; j++) {
+//                if (word1.charAt(j) != word2.charAt(word2.length() - j - 1)) {
+//                    isPalindrom = false;
+//                    break;
+//                }
+//            }
+//            if (isPalindrom) {
+//                System.out.println(word1 + " -> " + word2);
+//            }
         }
     }
 
@@ -126,7 +130,7 @@ public class Main {
     private static void avg(int[] arr) {
         int sum = sum(arr);
         double avg;
-        avg = sum / arr.length;
+        avg = (double) sum / arr.length;
         System.out.println(avg);
     }
 }

@@ -106,7 +106,7 @@ public class Task2 {
     // 3
     public static String[] findUnique(String[] arr) {
         Set<String> set = new HashSet<>(Arrays.asList(arr));
-        return set.toArray(new String[0]);
+        return set.toArray(new String[set.size()]);
     }
 
     // 4
@@ -122,7 +122,8 @@ public class Task2 {
     private static Set<String> findAlt(Set<String> set) {
         Set<String> result = new HashSet<>();
         for (String word : set) {
-            if (Character.isUpperCase(word.charAt(0))) {
+            if (word.startsWith(String.valueOf(word.toUpperCase().charAt(0)))) {
+//            if (Character.isUpperCase(word.charAt(0))) {
                 result.add(word);
             }
         }

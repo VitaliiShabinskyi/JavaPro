@@ -91,19 +91,28 @@ public class Info {
         Position currentPosition = employee.getPosition();
         double currentSalary = employee.getSalary();
 
-        Position newPosition = null;
-        for (Position position : Position.values()) {
-            if (position.ordinal() == currentPosition.ordinal() + 1) {
-                newPosition = position;
-                break;
-            }
-        }
-
-        if (newPosition != null) {
-            double newSalary = currentSalary * 1.25;
+        Position[] positions = Position.values();
+        int currentPositionIndex = currentPosition.ordinal();
+        if (currentPositionIndex < positions.length - 1) {
+            Position newPosition = positions[currentPositionIndex + 1];
             employee.setPosition(newPosition);
-            employee.setSalary(newSalary);
         }
+        double newSalary = currentSalary * 1.25;
+        employee.setSalary(newSalary);
+
+//        Position newPosition = null;
+//        for (Position position : Position.values()) {
+//            if (position.ordinal() == currentPosition.ordinal() + 1) {
+//                newPosition = position;
+//                break;
+//            }
+//        }
+//
+//        if (newPosition != null) {
+//            double newSalary = currentSalary * 1.25;
+//            employee.setPosition(newPosition);
+//            employee.setSalary(newSalary);
+//        }
     }
 
 }
