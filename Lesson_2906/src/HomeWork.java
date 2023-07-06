@@ -233,7 +233,13 @@ public class HomeWork {
                 " одна группа - слова с длиной менее или равной 4 символам, другая группа - слова с длиной более 4 символов.\n" +
                 " После этого подсчитать количество слов в каждой группе и вывести результат.");
         System.out.println(strings.stream()
-                .collect(Collectors.partitioningBy(s -> s.length() > 4, Collectors.counting()))
+                .collect(Collectors.groupingBy(s -> {
+                    if (s.length() > 4) {
+                        return "Больше 4";
+                    } else {
+                        return "Меньше или равно 4";
+                    }
+                }, Collectors.counting()))
         );
 
         System.out.println("28. Дан список строк. Необходимо пропустить первые три символа в каждой строке и объединить оставшиеся символы в одну строку.");
