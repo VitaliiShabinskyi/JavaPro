@@ -157,7 +157,7 @@ public class HomeWork {
                 .orElse(0)
         );
 
-        System.out.println("18. . Необходимо найти самое длинное слово с четной длиной.");
+        System.out.println("18. Дан список строк. Необходимо найти самое длинное слово с четной длиной.");
         System.out.println(strings.stream()
                 .filter(s -> s.length() % 2 == 0)
                 .mapToInt(String::length)
@@ -208,7 +208,7 @@ public class HomeWork {
         personList.add(new Persons("Roman", 25));
 
         System.out.println(personList.stream()
-                .filter(p -> p.age >= 25 && p.age <= 40)
+                .filter(p -> p.getAge() >= 25 && p.getAge() <= 40)
                 .sorted()
                 .toList()
         );
@@ -271,8 +271,8 @@ public class HomeWork {
 @AllArgsConstructor
 @ToString
 class Persons implements Comparable<Persons> {
-    String name;
-    int age;
+    private String name;
+    private int age;
 
     @Override
     public int compareTo(Persons o) {
