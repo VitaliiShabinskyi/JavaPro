@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
 
-        /**
-         * Вам дан текстовый файл, содержащий список email-адресов.
-         * Извлечь все уникальные домены электронной почты и подсчитать,
-         * сколько раз каждый домен встречается в списке.
+        /*
+          Вам дан текстовый файл, содержащий список email-адресов.
+          Извлечь все уникальные домены электронной почты и подсчитать,
+          сколько раз каждый домен встречается в списке.
          */
         Map<String, Integer> countDomain = new HashMap<>();
         try(BufferedReader emails = new BufferedReader(new FileReader("data/emails.txt"))) {
@@ -36,9 +36,9 @@ public class Main {
 
 
         System.out.println("-".repeat(30));
-        /**
-         * Вам дан текстовый файл, содержащий список URL-адресов.
-         * Найти все URL, которые содержат протокол "https://" и заменить их на "http://"
+        /*
+          Вам дан текстовый файл, содержащий список URL-адресов.
+          Найти все URL, которые содержат протокол "https://" и заменить их на "http://"
          */
         try (BufferedReader urlsReader = new BufferedReader(new FileReader("data/urls.txt"));
              BufferedWriter urlsWriter = new BufferedWriter(new FileWriter("data/urls_out.txt"))) {
@@ -63,9 +63,9 @@ public class Main {
 
 
         System.out.println("-".repeat(30));
-        /**
-         * Вам дан текстовый файл, содержащий список кодов продуктов в формате: <product_code>:<quantity>.
-         * Найти все продукты с количеством больше 10 и вывести их коды и количество.
+        /*
+          Вам дан текстовый файл, содержащий список кодов продуктов в формате: <product_code>:<quantity>.
+          Найти все продукты с количеством больше 10 и вывести их коды и количество.
          */
         try (BufferedReader products = new BufferedReader(new FileReader("data/products.txt"))) {
             String line;
