@@ -9,7 +9,7 @@ public class ValidationUtils {
     }
 
     public boolean isPhoneNumberValid(String phoneNumber) {
-        String digitsOnly = phoneNumber.replaceAll("[\\D]", "");
+        String digitsOnly = phoneNumber.replaceAll("\\D", "");
 
         return digitsOnly.length() == 10 && digitsOnly.startsWith("+1");
     }
